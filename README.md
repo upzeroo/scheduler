@@ -1,4 +1,6 @@
-# scheduler
+# Scheduler
+
+Current component is just a wrapper around github.com/hibiken/asynq. Atm supports Redis only
 
 # Examples
 
@@ -107,6 +109,21 @@ func (task RSSParseTask) ProcessTask(ctx context.Context, t *asynq.Task) error {
 
     ... 
 
+	var data struct {
+		RssURIs []string `json:"rss_uris"`
+	}
+
+	err := json.Unmarshal(t.Payload(), &data)
+	if err != nil {
+		logger.WithError(err).Error("json.Unmarshal failed")
+
+		return err
+	}
+
+	// do whatever needed
+    ...
+
+	return nil
 }
 
 ```
