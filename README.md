@@ -2,7 +2,9 @@
 
 # Examples
 
-### Scheduler, later used into http handler/server - 
+Here we show some basic code snippets - creating and using scheduler sch, starting the server, composing the client, adding a job into queue, and finally actuall task worker implementation
+
+#### Scheduler, later used into http handler/server - 
 ```
 ...
 
@@ -22,7 +24,8 @@
 ...
 ```
 
-### Server
+#### Server
+Here we are creating the sch and strarting server workers, defining per each needed variables, worker pool nums etc.
 ```
 ...
 
@@ -49,7 +52,8 @@
 
 ```
 
-### Client - Handler Add Job into queue -
+#### Client - Handler Add Job into queue -
+Here we reuse injected scheduler sch into server instance, to add a job
 ```
 ...
 
@@ -80,6 +84,8 @@ func (serv *QueueServer) Add(resp http.ResponseWriter, req *http.Request) {
 ```
 
 #### Sample task implentation
+Just a snippet, showing task type definition, task struct with needed fields/if any/ and the actuall method, which MUST satisfy the asynq.Handler interface.
+
 ```
 ...
 
